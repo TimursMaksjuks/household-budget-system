@@ -15,4 +15,7 @@ class Category extends Model
     {
         return $this->hasMany(Budget::class);
     }
+
+    protected $fillable = ['name'];
+    
 }
