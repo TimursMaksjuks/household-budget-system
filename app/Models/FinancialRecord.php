@@ -15,4 +15,6 @@ class FinancialRecord extends Model
     {
        return $this->belongsTo(Category::class);
     }
+
+    protected $fillable = ['amount', 'date', 'description', 'record_type', 'user_id', 'category_id'];
 }
