@@ -66,24 +66,56 @@ class FinanceController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id)
-    {
-        //
-    }
+    public function edit(FinancialRecord $financialRecord)
+{
+    if ($financialRecord->user_id !== Auth::id()) {
+    abort(403);
+}
+    $categories = Category::all();
+
+    return view('financial-records.edit', compact('financialRecord', 'categories'));
+}
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
-    {
-        //
-    }
+    public function update(Request $request, FinancialRecord $financialRecord)
+{
+    if ($financialRecord->user_id !== Auth::id()) {
+    abort(403);
+}
+
+    $request->validate([
+        'amount' => 'required|numeric|min:0.01',
+        'date' => 'required|date',
+        'description' => 'required|max:255',
+        'record_type' => 'required',
+        'category_id' => 'required'
+    ]);
+
+    $financialRecord->update([
+        'amount' => $request->amount,
+        'date' => $request->date,
+        'description' => $request->description,
+        'record_type' => $request->record_type,
+        'category_id' => $request->category_id
+    ]);
+
+    return redirect()->route('financial-records.index');
+}
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
-    {
-        //
-    }
+    public function destroy(FinancialRecord $financialRecord)
+{
+    if ($financialRecord->user_id !== Auth::id()) {
+    abort(403);
+}
+
+    $financialRecord->delete();
+
+    return redirect()->route('financial-records.index');
+}
+
 }
