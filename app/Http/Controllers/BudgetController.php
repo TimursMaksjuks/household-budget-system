@@ -62,24 +62,53 @@ class BudgetController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id)
-    {
-        //
+    public function edit(Budget $budget)
+{
+    if ($budget->user_id !== Auth::id()) {
+        abort(403);
     }
+
+    $categories = Category::all();
+
+    return view('budgets.edit', compact('budget', 'categories'));
+}
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
-    {
-        //
+    public function update(Request $request, Budget $budget)
+{
+    if ($budget->user_id !== Auth::id()) {
+        abort(403);
     }
+
+    $request->validate([
+        'limit_amount' => 'required|numeric|min:0.01',
+        'period' => 'required',
+        'category_id' => 'required'
+    ]);
+
+    $budget->update([
+        'limit_amount' => $request->limit_amount,
+        'period' => $request->period,
+        'category_id' => $request->category_id
+    ]);
+
+    return redirect()->route('budgets.index');
+}
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
-    {
-        //
+    public function destroy(Budget $budget)
+{
+    if ($budget->user_id !== Auth::id()) {
+        abort(403);
     }
+
+    $budget->delete();
+
+    return redirect()->route('budgets.index');
+}
+
 }
