@@ -15,4 +15,7 @@ class Budget extends Model
     {
        return $this->belongsTo(Category::class);
     }
+    
+    protected $fillable = [ 'limit_amount', 'period', 'user_id', 'category_id'];
+
 }
