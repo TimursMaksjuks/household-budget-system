@@ -4,6 +4,7 @@ use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\FinanceController;
 use App\Http\Controllers\BudgetController;
+use App\Http\Controllers\DiagramController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -20,7 +21,8 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
     Route::resource('categories', CategoryController::class);
     Route::resource('financial-records', FinanceController::class);
-    Route::resource('budgets',BudgetController::class);
+    Route::resource('budgets', BudgetController::class);
+    Route::get('/dashboard', [DiagramController::class, 'index'])->name('dashboard');
 });
 
 require __DIR__.'/auth.php';
