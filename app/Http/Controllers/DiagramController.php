@@ -31,4 +31,17 @@ class DiagramController extends Controller
 
 }
 
+public function expensesByCategory(){
+
+    $expenses = FinancialRecord::where('user_id', Auth::id())
+    ->where('record_type', 'expense')
+    ->selectRaw('category_id, SUM(amount) as total')
+    ->groupBy('category_id')
+    ->with('category')
+    ->get();
+
+    return view('diagrams.expenses-by-category', compact('expenses'));
+    
+}
+
 }
