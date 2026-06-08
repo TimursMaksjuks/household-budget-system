@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers;
 
-//use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Models\FinancialRecord;
 use App\Models\Budget;
@@ -42,6 +41,52 @@ public function expensesByCategory(){
 
     return view('diagrams.expenses-by-category', compact('expenses'));
     
+}
+
+public function monthlyIncomeExpenses(){
+
+    $incomeData = FinancialRecord::where('user_id', Auth::id())
+        ->where('record_type', 'income')
+        ->selectRaw("DATE_FORMAT(date, '%Y-%m') as month, SUM(amount) as total")
+        ->groupBy('month')
+        ->get();
+
+    $expenseData = FinancialRecord::where('user_id', Auth::id())
+        ->where('record_type', 'expense')
+        ->selectRaw("DATE_FORMAT(date, '%Y-%m') as month, SUM(amount) as total")
+        ->groupBy('month')
+        ->get();
+
+    $months = collect(
+        $incomeData->pluck('month')
+            ->merge($expenseData->pluck('month'))
+            ->unique()
+            ->sort()
+            ->values()
+    );
+
+    $incomeValues = [];
+    $expenseValues = [];
+
+    foreach ($months as $month) {
+
+        $incomeValues[] = optional(
+            $incomeData->firstWhere('month', $month)
+        )->total ?? 0;
+
+        $expenseValues[] = optional(
+            $expenseData->firstWhere('month', $month)
+        )->total ?? 0;
+    }
+
+    return view(
+        'diagrams.monthly-income-expenses',
+        compact(
+            'months',
+            'incomeValues',
+            'expenseValues'
+        )
+    );
 }
 
 }

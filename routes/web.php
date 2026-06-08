@@ -22,6 +22,8 @@ Route::middleware('auth')->group(function () {
     Route::resource('budgets', BudgetController::class);
     Route::get('/dashboard', [DiagramController::class, 'index'])->name('dashboard');
     Route::get('/diagrams/expenses-by-category', [DiagramController::class, 'expensesByCategory'])->name('diagrams.expenses-by-category');
+    Route::get('/diagrams/monthly-income-expenses',[DiagramController::class, 'monthlyIncomeExpenses'])->name('diagrams.monthly-income-expenses');
+
 });
 
 require __DIR__.'/auth.php';
