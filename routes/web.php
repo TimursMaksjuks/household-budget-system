@@ -6,6 +6,7 @@ use App\Http\Controllers\FinanceController;
 use App\Http\Controllers\BudgetController;
 use App\Http\Controllers\DiagramController;
 use App\Http\Controllers\GuestController;
+use App\Http\Controllers\AdminController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', [GuestController::class, 'index']);
@@ -22,7 +23,9 @@ Route::middleware('auth')->group(function () {
     Route::get('/dashboard', [DiagramController::class, 'index'])->name('dashboard');
     Route::get('/diagrams/expenses-by-category', [DiagramController::class, 'expensesByCategory'])->name('diagrams.expenses-by-category');
     Route::get('/diagrams/monthly-income-expenses',[DiagramController::class, 'monthlyIncomeExpenses'])->name('diagrams.monthly-income-expenses');
-
 });
+
+Route::get('/admin',[AdminController::class, 'index'])->middleware(['auth', 'role:admin'])->name('admin.index');
+
 
 require __DIR__.'/auth.php';
