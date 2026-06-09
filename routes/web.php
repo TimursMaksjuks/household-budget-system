@@ -5,11 +5,10 @@ use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\FinanceController;
 use App\Http\Controllers\BudgetController;
 use App\Http\Controllers\DiagramController;
+use App\Http\Controllers\GuestController;
 use Illuminate\Support\Facades\Route;
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', [GuestController::class, 'index']);
 
 Route::get('/overview', [DiagramController::class, 'index'])->middleware(['auth'])->name('dashboard');
 
