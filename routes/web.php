@@ -27,5 +27,14 @@ Route::middleware('auth')->group(function () {
 
 Route::get('/admin',[AdminController::class, 'index'])->middleware(['auth', 'role:admin'])->name('admin.index');
 
+Route::patch('/admin/users/{user}/block', [AdminController::class, 'block'])->middleware(['auth', 'role:admin'])->name('admin.users.block');
+
+Route::patch('/admin/users/{user}/unblock', [AdminController::class, 'unblock'])->middleware(['auth', 'role:admin'])->name('admin.users.unblock');
+
+Route::patch('/admin/users/{user}/make-admin', [AdminController::class, 'makeAdmin'])->middleware(['auth', 'role:admin'])->name('admin.users.make-admin');
+
+Route::patch('/admin/users/{user}/make-user', [AdminController::class, 'makeUser'])->middleware(['auth', 'role:admin'])->name('admin.users.make-user');
+
+Route::get('/admin/financial-records', [AdminController::class, 'financialRecords'])->middleware(['auth', 'role:admin'])->name('admin.financial-records');
 
 require __DIR__.'/auth.php';
