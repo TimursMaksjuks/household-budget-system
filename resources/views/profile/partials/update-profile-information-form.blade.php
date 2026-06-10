@@ -47,6 +47,37 @@
             @endif
         </div>
 
+        <div class="mt-4">
+
+    <label for="language">
+        Language
+    </label>
+
+    <select
+        id="language"
+        name="language"
+        class="block mt-1 w-full"
+    >
+
+        <option value="lv"
+            {{ auth()->user()->language == 'lv' ? 'selected' : '' }}>
+            Latviešu
+        </option>
+
+        <option value="en"
+            {{ auth()->user()->language == 'en' ? 'selected' : '' }}>
+            English
+        </option>
+
+        <option value="ru"
+            {{ auth()->user()->language == 'ru' ? 'selected' : '' }}>
+            Русский
+        </option>
+
+    </select>
+
+</div>
+
         <div class="flex items-center gap-4">
             <x-primary-button>{{ __('Save') }}</x-primary-button>
 

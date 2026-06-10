@@ -1,4 +1,4 @@
-<h1>Edit Budget</h1>
+<h1>{{ __('messages.edit_budget') }}</h1>
 
 <form method="POST" action="{{ route('budgets.update', $budget) }}">
 
@@ -6,7 +6,7 @@
 @method('PUT')
 
 <div>
-    <label>Limit Amount</label>
+    <label>{{ __('messages.limit_amount') }}</label>
 
     <input type="number" step="0.01" name="limit_amount" value="{{ $budget->limit_amount }}" required>
 
@@ -15,7 +15,7 @@
 <br>
 
 <div>
-    <label>Period</label>
+    <label>{{ __('messages.period') }}</label>
 
     <input type="text" name="period" value="{{ $budget->period }}" required >
 
@@ -24,7 +24,7 @@
 <br>
 
 <div>
-    <label>Category</label>
+    <label>{{ __('messages.category') }}</label>
 
     <select name="category_id" required>
 
@@ -45,10 +45,10 @@
 
 <br>
 
-<button type="submit"> Update Budget </button>
+<button type="submit"> {{ __('messages.update_budget') }} </button>
 
 </form>
 
 <br>
 
-<a href="{{ route('budgets.index') }}"> Back to Budgets </a>
+<a href="{{ route('budgets.index') }}"> {{ __('messages.back_to_budgets') }} </a>

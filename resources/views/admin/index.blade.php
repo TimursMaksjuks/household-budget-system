@@ -1,15 +1,15 @@
-<h1>Admin Panel</h1>
+<h1>{{ __('messages.admin_panel') }}</h1>
 
 <table border="1">
 
 <tr>
     <th>ID</th>
-    <th>Name</th>
-    <th>Surname</th>
-    <th>Email</th>
-    <th>Role</th>
-    <th>Blocked</th>
-    <th>Actions</th>
+    <th>{{ __('messages.name') }}</th>
+    <th>{{ __('messages.surname') }}</th>
+    <th>{{ __('messages.email') }}</th>
+    <th>{{ __('messages.role') }}</th>
+    <th>{{ __('messages.blocked') }}</th>
+    <th>{{ __('messages.actions') }}</th>
 </tr>
 
 @foreach($users as $user)
@@ -23,7 +23,7 @@
         <td>{{ $user->role }}</td>
 
         <td>
-            {{ $user->is_blocked ? 'Yes' : 'No' }}
+            {{ $user->is_blocked ? __('messages.yes') : __('messages.no') }}
         </td>
 
         <td>
@@ -36,7 +36,7 @@
             @csrf
             @method('PATCH')
 
-            <button type="submit"> Block </button>
+            <button type="submit"> {{ __('messages.block') }} </button>
         </form>
 
     @else
@@ -45,7 +45,7 @@
             @csrf
             @method('PATCH')
 
-            <button type="submit"> Unblock </button>
+            <button type="submit"> {{ __('messages.unblock') }} </button>
         </form>
 
     @endif
@@ -61,7 +61,7 @@
         @csrf
         @method('PATCH')
 
-        <button type="submit"> Make Admin </button>
+        <button type="submit"> {{ __('messages.make_admin') }} </button>
 
     </form>
 
@@ -72,7 +72,7 @@
         @csrf
         @method('PATCH')
 
-        <button type="submit"> Make User </button>
+        <button type="submit"> {{ __('messages.make_user') }} </button>
 
     </form>
 

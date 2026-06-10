@@ -1,4 +1,4 @@
-<h1>Edit Financial Record</h1>
+<h1>{{ __('messages.edit_finance_record') }}</h1>   
 
 <form method="POST" action="{{ route('financial-records.update', $financialRecord) }}">
 
@@ -6,7 +6,7 @@
     @method('PUT')
 
 <div>
-    <label>Amount</label>
+    <label>{{ __('messages.amount') }}</label>
     <input type="number" step="0.01" name="amount" value="{{ $financialRecord->amount }}" required >
 
 </div>
@@ -14,31 +14,31 @@
 <br>
 
 <div>
-    <label>Date</label>
+    <label>{{ __('messages.date') }}</label>
     <input type="date" name="date" value="{{ $financialRecord->date }}" required >
 </div>
 
 <br>
 
 <div>
-    <label>Description</label>
+    <label>{{ __('messages.description') }}</label>
     <input type="text" name="description" value="{{ $financialRecord->description }}" required >
 </div>
 
 <br>
 
 <div>
-    <label>Type</label>
+    <label>{{ __('messages.type') }}</label>
 
     <select name="record_type" required>
         <option value="income"
             {{ $financialRecord->record_type == 'income' ? 'selected' : '' }}>
-            Income
+            {{ __('messages.income') }}
         </option>
 
         <option value="expense"
             {{ $financialRecord->record_type == 'expense' ? 'selected' : '' }}>
-            Expense
+            {{ __('messages.expense') }}
         </option>
     </select>
 </div>
@@ -46,7 +46,7 @@
 <br>
 
 <div>
-    <label>Category</label>
+    <label>{{ __('messages.category') }}</label>
 
     <select name="category_id" required>
         @foreach($categories as $category)
@@ -63,10 +63,10 @@
 
 <br>
 
-<button type="submit"> Update Record </button>
+<button type="submit"> {{ __('messages.update_record') }} </button>
 
 </form>
 
 <br>
 
-<a href="{{ route('financial-records.index') }}"> Back to Records </a>
+<a href="{{ route('financial-records.index') }}"> {{ __('messages.back_to_records') }} </a>

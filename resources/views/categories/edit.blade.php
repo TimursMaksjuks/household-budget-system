@@ -6,6 +6,6 @@
 
     <input type="text" name="name" value="{{ $category->name }}">
 
-    <button type="submit"> Update </button>
+    <button type="submit"> {{ __('messages.save') }} </button>
 
 </form>

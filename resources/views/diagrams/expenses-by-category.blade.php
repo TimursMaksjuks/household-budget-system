@@ -1,7 +1,7 @@
 <x-app-layout>
 
     <x-slot name="header">
-        <h2 class="font-semibold text-xl text-gray-800 leading-tight"> Expenses by Category </h2>
+        <h2 class="font-semibold text-xl text-gray-800 leading-tight"> {{ __('messages.expenses_by_category') }} </h2>
     </x-slot>
 
     @php
@@ -26,7 +26,7 @@
 
                 <div class="p-6 text-gray-900">
 
-                    <h3>Expense Distribution by Category</h3>
+                    <h3>  {{ __('messages.expenses_by_category') }} </h3> 
 
                     <br>
 
@@ -58,7 +58,7 @@
 
                 datasets: [{
 
-                    label: 'Expenses',
+                    label: '{{ __('messages.expense') }}',
 
                     data: @json($data)
 

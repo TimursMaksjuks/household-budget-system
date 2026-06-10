@@ -1,4 +1,4 @@
-<h1>Add Financial Record</h1>
+<h1>{{ __('messages.create_finance_record') }}</h1>
 
 <form method="POST" action="{{ route('financial-records.store') }}">
 
@@ -6,34 +6,34 @@
 
 
     <div>
-        <label>Amount</label>
+        <label>{{ __('messages.amount') }}</label>
         <input type="number" step="0.01" name="amount">
     </div>
 
 
     <div>
-        <label>Date</label>
+        <label>{{ __('messages.date') }}</label>
         <input type="date" name="date">
     </div>
 
 
     <div>
-        <label>Description</label>
+        <label>{{ __('messages.description') }}</label>
         <textarea name="description" required></textarea>    
     </div>
 
 
     <div>
-        <label>Type</label>
+        <label>{{ __('messages.type') }}</label>
         <select name="record_type">
-            <option value="income">Income</option>
-            <option value="expense">Expense</option>
+            <option value="income">{{ __('messages.income') }}</option>
+            <option value="expense">{{ __('messages.expense') }}</option>
         </select>
     </div>
 
 
     <div>
-        <label>Category</label>
+        <label>{{ __('messages.category') }}</label>
         <select name="category_id">
             @foreach($categories as $category)
                 <option value="{{ $category->id }}">
@@ -44,5 +44,5 @@
     </div>
 
 
-    <button type="submit"> Save </button>
+    <button type="submit"> {{ __('messages.save') }} </button>
 </form>

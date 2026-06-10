@@ -1,7 +1,7 @@
 <x-app-layout>
 
 <x-slot name="header">
-    <h2 class="font-semibold text-xl text-gray-800 leading-tight"> Monthly Income and Expenses </h2>
+    <h2 class="font-semibold text-xl text-gray-800 leading-tight"> {{ __('messages.monthly_income_expenses') }} </h2>
 </x-slot>
 
 <div class="py-12">
@@ -12,7 +12,7 @@
 
             <div class="p-6 text-gray-900">
 
-                <h3>Income and Expenses by Month</h3>
+                <h3> {{ __('messages.monthly_income_expenses') }} </h3>
 
                 <br>
 
@@ -45,12 +45,12 @@
             datasets: [
 
                 {
-                    label: 'Income',
+                    label: '{{ __('messages.income') }}',
                     data: @json($incomeValues)
                 },
 
                 {
-                    label: 'Expenses',
+                    label: '{{ __('messages.expense') }}',
                     data: @json($expenseValues)
                 }
 

@@ -1,8 +1,8 @@
 <x-app-layout>
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-            {{ __('Overview') }}
-        </h2>
+{{ __('messages.overview') }}
+       </h2>
     </x-slot>
 
     <div class="py-12">
@@ -10,18 +10,18 @@
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
 
                 <div class="p-6 text-gray-900">
+                
+                <h2> {{ __('messages.household_budget_dashboard') }} </h2> 
 
-                <h2> Household Budget Dashboard </h2>
+                <p> {{ __('messages.total_income') }}: {{ $totalIncome }} </p>
 
-                <p> Total Income: {{ $totalIncome }} </p>
+                <p> {{ __('messages.total_expenses') }}: {{ $totalExpenses }} </p>
 
-                <p> Total Expenses: {{ $totalExpenses }} </p>
+                <p> {{ __('messages.current_balance') }}: {{ $balance }} </p>
 
-                <p> Current Balance: {{ $balance }} </p>
+                <p> {{ __('messages.financial_records_count') }}: {{ $recordsCount }} </p>
 
-                <p> Financial Records: {{ $recordsCount }} </p>
-
-                <p> Budgets: {{ $budgetsCount }} </p>
+                <p> {{ __('messages.budgets_count') }}: {{ $budgetsCount }} </p>
 
                 </div>
 

@@ -1,19 +1,19 @@
-<h1>Categories</h1>
+<h1>{{ __('messages.categories') }}</h1>
 
-<a href="{{ route('categories.create') }}"> Create Category </a>
+<a href="{{ route('categories.create') }}"> {{ __('messages.create_category') }} </a>
 
 @foreach($categories as $category)
 
     <p>{{ $category->name }}</p>
 
-    <a href="{{ route('categories.edit', $category) }}"> Edit </a>
+    <a href="{{ route('categories.edit', $category) }}"> {{ __('messages.edit') }} </a>
 
     <form method="POST" action="{{ route('categories.destroy', $category) }}">
 
         @csrf
         @method('DELETE')
 
-        <button type="submit"> Delete </button>
+        <button type="submit"> {{ __('messages.delete') }} </button>
 
     </form>
 

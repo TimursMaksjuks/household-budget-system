@@ -1,6 +1,6 @@
-<h1>Budgets</h1>
+<h1>{{ __('messages.budgets') }}</h1>
 
-<a href="{{ route('budgets.create') }}"> Add Budget </a>
+<a href="{{ route('budgets.create') }}"> {{ __('messages.add_budget') }} </a>
 
 <br>
 
@@ -9,10 +9,10 @@
 <table border="1">
 
 <tr>
-    <th>Period</th>
-    <th>Category</th>
-    <th>Limit Amount</th>
-    <th>Actions</th>
+    <th>{{ __('messages.period') }}</th>
+    <th>{{ __('messages.category') }}</th>
+    <th>{{ __('messages.limit_amount') }}</th>
+    <th>{{ __('messages.actions') }}</th>
 </tr>
 
 @foreach($budgets as $budget)
@@ -24,14 +24,14 @@
 
         <td>
 
-            <a href="{{ route('budgets.edit', $budget) }}"> Edit </a>
+            <a href="{{ route('budgets.edit', $budget) }}"> {{ __('messages.edit') }} </a>
 
             <form method="POST" action="{{ route('budgets.destroy', $budget) }}" style="display:inline;">
 
                 @csrf
                 @method('DELETE')
 
-                <button type="submit"> Delete </button>
+                <button type="submit"> {{ __('messages.delete') }} </button>
 
             </form>
 

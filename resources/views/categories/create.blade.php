@@ -4,6 +4,6 @@
 
     <input type="text" name="name">
 
-    <button type="submit"> Create </button>
+    <button type="submit"> {{ __('messages.create_category') }} </button>
 
 </form>
