@@ -7,13 +7,15 @@ use App\Http\Controllers\BudgetController;
 use App\Http\Controllers\DiagramController;
 use App\Http\Controllers\GuestController;
 use App\Http\Controllers\AdminController;
+use Illuminate\Support\Facades\Cookie;
+
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', [GuestController::class, 'index']);
 
 Route::get('/overview', [DiagramController::class, 'index'])->middleware(['auth'])->name('dashboard');
 
-Route::middleware('auth')->group(function () {
+Route::middleware(['auth', 'locale'])->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
@@ -37,4 +39,16 @@ Route::patch('/admin/users/{user}/make-user', [AdminController::class, 'makeUser
 
 Route::get('/admin/financial-records', [AdminController::class, 'financialRecords'])->middleware(['auth', 'role:admin'])->name('admin.financial-records');
 
+Route::get('/language/{locale}', function ($locale) {
+
+    if (in_array($locale, ['lv', 'en'])) {
+        session(['locale' => $locale]);
+    }
+
+    return back();
+
+})->name('language.switch');
+
 require __DIR__.'/auth.php';
+
+

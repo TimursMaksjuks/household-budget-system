@@ -67,34 +67,7 @@
             @endif
         </div>
 
-        <div>
-            <label for="language" class="block font-medium text-sm text-gray-700">
-                {{ __('messages.language') }}
-            </label>
-
-            <select
-                id="language"
-                name="language"
-                class="block mt-1 w-full border-gray-300 rounded-md shadow-sm"
-            >
-                <option value="lv"
-                    {{ auth()->user()->language == 'lv' ? 'selected' : '' }}>
-                    Latviešu
-                </option>
-
-                <option value="en"
-                    {{ auth()->user()->language == 'en' ? 'selected' : '' }}>
-                    English
-                </option>
-
-                <option value="ru"
-                    {{ auth()->user()->language == 'ru' ? 'selected' : '' }}>
-                    Русский
-                </option>
-            </select>
-
-            <x-input-error class="mt-2" :messages="$errors->get('language')" />
-        </div>
+        
 
         <div class="flex items-center gap-4">
             <x-primary-button>
