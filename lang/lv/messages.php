@@ -126,5 +126,58 @@ return [
 
     'email' => 'E-pasts',
 
+    'profile_information' => 'Profila informācija',
+
+    'update_profile_information' => 'Atjauniniet sava konta profila informāciju un e-pasta adresi.',
+
+    'language' => 'Valoda',
+     
+    'saved' => 'Saglabāts',
+
+    'update_password' => 'Atjaunināt paroli',
+
+    'ensure_password' => 'Drošības nolūkos pārliecinieties, ka jūsu konts izmanto garu un nejaušu paroli.',
+
+    'current_password' => 'Pašreizējā parole',
+
+    'new_password' => 'Jaunā parole',
+
+    'confirm_password' => 'Apstiprināt paroli',
+
+    'delete_account' => 'Dzēst kontu',
+
+    'delete_account_description' => 'Pēc konta dzēšanas visi tā resursi un dati tiks neatgriezeniski dzēsti. Pirms konta dzēšanas lejupielādējiet visus datus vai informāciju, ko vēlaties saglabāt.',
+
+    'delete_account_confirmation' => 'Vai tiešām vēlaties dzēst savu kontu?',
+
+    'delete_account_warning' => 'Pēc konta dzēšanas visi tā resursi un dati tiks neatgriezeniski dzēsti. Lūdzu, ievadiet savu paroli, lai apstiprinātu konta dzēšanu.',
+
+    'password' => 'Parole',
+
+    'cancel' => 'Atcelt',
+
+    'remember_me' => 'Atcerēties mani',
+
+    'forgot_password' => 'Aizmirsāt paroli?',
+
+    'already_registered' => 'Jau reģistrējāties?',
+    
+    'forgot_password_description' => 'Aizmirsāt savu paroli? Nekādu problēmu. Ievadiet savu e-pasta adresi, un mēs nosūtīsim paroles atiestatīšanas saiti.',
+
+    'email_password_reset_link' => 'Nosūtīt paroles atiestatīšanas saiti',
+
+    'reset_password' => 'Atiestatīt paroli',
+
+    'verify_email' => 'Apstipriniet e-pasta adresi',
+
+    'verify_email_description' => 'Paldies par reģistrāciju! Pirms darba sākšanas, lūdzu, apstipriniet savu e-pasta adresi, noklikšķinot uz saites, kuru mēs nosūtījām uz jūsu e-pastu. Ja nesaņēmāt e-pastu, mēs nosūtīsim jaunu.',
+
+    'verification_link_sent' => 'Jauna apstiprinājuma saite ir nosūtīta uz jūsu e-pasta adresi.',
+
+    'resend_verification_email' => 'Nosūtīt apstiprinājuma e-pastu atkārtoti',
+
+
+
+
     
 ];
