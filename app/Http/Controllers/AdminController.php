@@ -23,21 +23,21 @@ public function block(User $user){
 
     $user->update(['is_blocked' => true]);
 
-    return redirect()->route('admin.index');
+    return redirect()->route('admin.index')->with('success', __('messages.user_blocked'));
 }
 
 public function unblock(User $user)
 {
     $user->update(['is_blocked' => false]);
 
-    return redirect()->route('admin.index');
+    return redirect()->route('admin.index')->with('success', __('messages.user_blocked'));
 }
 
 public function makeAdmin(User $user)
 {
     $user->update(['role' => 'admin']);
 
-    return redirect()->route('admin.index');
+    return redirect()->route('admin.index')->with('success', __('messages.user_promoted'));
 }
 
 public function makeUser(User $user)
@@ -48,7 +48,7 @@ public function makeUser(User $user)
 
     $user->update(['role' => 'user']);
 
-    return redirect()->route('admin.index');
+    return redirect()->route('admin.index')->with('success', __('messages.user_demoted'));
 }
 
 public function financialRecords()

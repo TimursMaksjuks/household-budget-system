@@ -14,8 +14,10 @@
         <!-- Scripts -->
         @vite(['resources/css/app.css', 'resources/js/app.js'])
     </head>
+
     <body class="font-sans antialiased">
         <div class="min-h-screen bg-gray-100">
+
             @include('layouts.navigation')
 
             <!-- Page Heading -->
@@ -27,10 +29,20 @@
                 </header>
             @endisset
 
+            <!-- Success Message -->
+            @if(session('success'))
+                <div class="max-w-7xl mx-auto mt-4 px-4 sm:px-6 lg:px-8">
+                    <div class="bg-green-100 border border-green-400 text-green-700 px-4 py-3 rounded">
+                        {{ session('success') }}
+                    </div>
+                </div>
+            @endif
+
             <!-- Page Content -->
             <main>
                 {{ $slot }}
             </main>
+
         </div>
     </body>
 </html>

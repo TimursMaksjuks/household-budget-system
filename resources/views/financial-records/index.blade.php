@@ -1,3 +1,17 @@
+@if(session('success'))
+
+    <div style="
+        background:#d4edda;
+        color:#155724;
+        padding:10px;
+        margin-bottom:15px;
+        border:1px solid #c3e6cb;
+    ">
+        {{ session('success') }}
+    </div>
+
+@endif
+
 <h1>{{ __('messages.financial_records') }}</h1>
 
 <a href="{{ route('financial-records.create') }}"> {{ __('messages.add_record') }} </a>

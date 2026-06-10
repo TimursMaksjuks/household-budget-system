@@ -34,7 +34,7 @@ class CategoryController extends Controller
         
         Category::create(['name' => $request->name]);
 
-        return redirect()->route('categories.index');
+        return redirect()->route('categories.index')->with('success', __('messages.category_created'));
 
     }
 
@@ -63,7 +63,7 @@ class CategoryController extends Controller
 
         $category->update([ 'name' => $request->name ]);
         
-        return redirect()->route('categories.index');
+        return redirect()->route('categories.index')->with('success', __('messages.category_updated'));
 
     }
 
@@ -74,7 +74,7 @@ class CategoryController extends Controller
     {
         $category->delete();
         
-        return redirect()->route('categories.index');
+        return redirect()->route('categories.index')->with('success', __('messages.category_deleted'));
         
     }
 }

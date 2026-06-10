@@ -176,7 +176,31 @@ return [
 
     'resend_verification_email' => 'Nosūtīt apstiprinājuma e-pastu atkārtoti',
 
+    'record_created' => 'Finanšu ieraksts veiksmīgi izveidots.',
+    
+    'record_updated' => 'Finanšu ieraksts veiksmīgi atjaunināts.',
+    
+    'record_deleted' => 'Finanšu ieraksts veiksmīgi dzēsts.',
 
+    'category_created' => 'Kategorija veiksmīgi izveidota.',
+    
+    'category_updated' => 'Kategorija veiksmīgi atjaunināta.',
+
+    'category_deleted' => 'Kategorija veiksmīgi dzēsta.',
+
+    'budget_created' => 'Budžets veiksmīgi izveidots.',
+
+    'budget_updated' => 'Budžets veiksmīgi atjaunināts.',
+
+    'budget_deleted' => 'Budžets veiksmīgi dzēsts.',
+
+    'user_blocked' => 'Lietotājs veiksmīgi bloķēts.',
+
+    'user_unblocked' => 'Lietotājs veiksmīgi atbloķēts.',
+
+    'user_promoted' => 'Lietotājs veiksmīgi paaugstināts par administratoru.',
+
+    'user_demoted' => 'Administrators veiksmīgi pārveidots par lietotāju.',
 
 
     

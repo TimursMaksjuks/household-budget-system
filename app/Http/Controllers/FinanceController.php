@@ -52,7 +52,10 @@ class FinanceController extends Controller
         'user_id' => Auth::id()
     ]);
 
-    return redirect()->route('financial-records.index');
+return redirect()
+    ->route('financial-records.index')
+    ->with('success', __('messages.record_created'));
+    
 }
 
     /**
@@ -101,7 +104,10 @@ class FinanceController extends Controller
         'category_id' => $request->category_id
     ]);
 
-    return redirect()->route('financial-records.index');
+return redirect()
+    ->route('financial-records.index')
+    ->with('success', __('messages.record_updated'));
+    
 }
 
     /**
@@ -115,7 +121,10 @@ class FinanceController extends Controller
 
     $financialRecord->delete();
 
-    return redirect()->route('financial-records.index');
+return redirect()
+    ->route('financial-records.index')
+    ->with('success', __('messages.record_deleted'));
+    
 }
 
 }

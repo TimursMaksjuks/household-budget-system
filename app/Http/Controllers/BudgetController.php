@@ -48,7 +48,7 @@ class BudgetController extends Controller
         'user_id' => Auth::id()
     ]);
 
-    return redirect()->route('budgets.index');
+    return redirect()->route('budgets.index')->with('success', __('messages.budget_created'));
 }
 
     /**
@@ -94,7 +94,7 @@ class BudgetController extends Controller
         'category_id' => $request->category_id
     ]);
 
-    return redirect()->route('budgets.index');
+    return redirect()->route('budgets.index')->with('success', __('messages.budget_updated'));
 }
 
     /**
@@ -108,7 +108,7 @@ class BudgetController extends Controller
 
     $budget->delete();
 
-    return redirect()->route('budgets.index');
+    return redirect()->route('budgets.index')->with('success', __('messages.budget_deleted'));
 }
 
 }
