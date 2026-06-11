@@ -216,6 +216,8 @@ return [
 
     'feature_4' => 'Analizēt finanšu datus ar diagrammām',
 
+    'back' => 'Atpakaļ',
+
 
     
 ];

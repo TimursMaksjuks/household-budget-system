@@ -215,4 +215,6 @@ return [
     'feature_3' => 'Create budgets',
 
     'feature_4' => 'Analyze financial data using charts',
+
+    'back' => 'Back',
 ];
