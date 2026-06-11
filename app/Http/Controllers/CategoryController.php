@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use App\Models\Category;
 
 class CategoryController extends Controller
@@ -11,11 +12,11 @@ class CategoryController extends Controller
      * Display a listing of the resource.
      */
     public function index()
-    {
-        $categories = Category::all();
+{
+    $categories = Category::where('user_id', Auth::id())->get();
 
-        return view('categories.index', compact('categories'));
-    }
+    return view('categories.index', compact('categories'));
+}
 
     /**
      * Show the form for creating a new resource.
@@ -30,10 +31,12 @@ class CategoryController extends Controller
      */
     public function store(Request $request)
     {
-        $request->validate(['name' => 'required|max:255']);
+        $request->validate(['name' => 'required|string|max:255']);
         
-        Category::create(['name' => $request->name]);
-
+        Category::create([
+    'name' => $request->name,
+    'user_id' => Auth::id(),
+]);
         return redirect()->route('categories.index')->with('success', __('messages.category_created'));
 
     }
@@ -50,16 +53,24 @@ class CategoryController extends Controller
      * Show the form for editing the specified resource.
      */
     public function edit(Category $category)
-    {
-        return view('categories.edit', compact('category'));
+{
+    if ($category->user_id !== Auth::id()) {
+        abort(403);
     }
+
+    return view('categories.edit', compact('category'));
+}
 
     /**
      * Update the specified resource in storage.
      */
     public function update(Request $request, Category $category)
     {
-        $request->validate([ 'name' => 'required|max:255' ]);
+
+     if ($category->user_id !== Auth::id()) {
+        abort(403);
+    }
+        $request->validate([ 'name' => 'required|string|max:255' ]);
 
         $category->update([ 'name' => $request->name ]);
         
@@ -71,10 +82,14 @@ class CategoryController extends Controller
      * Remove the specified resource from storage.
      */
     public function destroy(Category $category)
-    {
-        $category->delete();
-        
-        return redirect()->route('categories.index')->with('success', __('messages.category_deleted'));
-        
+{
+    if ($category->user_id !== Auth::id()) {
+        abort(403);
     }
+
+    $category->delete();
+
+    return redirect()->route('categories.index')
+        ->with('success', __('messages.category_deleted'));
+}
 }

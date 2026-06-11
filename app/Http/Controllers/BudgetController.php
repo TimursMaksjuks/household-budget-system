@@ -37,8 +37,8 @@ class BudgetController extends Controller
 {
     $request->validate([
         'limit_amount' => 'required|numeric|min:0.01',
-        'period' => 'required',
-        'category_id' => 'required'
+        'period' => 'required|string|max:255',
+    'category_id' => 'required|exists:categories,id',
     ]);
 
     Budget::create([
@@ -83,10 +83,10 @@ class BudgetController extends Controller
     }
 
     $request->validate([
-        'limit_amount' => 'required|numeric|min:0.01',
-        'period' => 'required',
-        'category_id' => 'required'
-    ]);
+    'limit_amount' => 'required|numeric|min:0.01',
+    'period' => 'required|string|max:255',
+    'category_id' => 'required|exists:categories,id',
+]);
 
     $budget->update([
         'limit_amount' => $request->limit_amount,

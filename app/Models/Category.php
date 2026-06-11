@@ -16,6 +16,11 @@ class Category extends Model
         return $this->hasMany(Budget::class);
     }
 
-    protected $fillable = ['name'];
+    public function user()
+{
+    return $this->belongsTo(User::class);
+}
+
+    protected $fillable = ['name', 'user_id'];
     
 }
