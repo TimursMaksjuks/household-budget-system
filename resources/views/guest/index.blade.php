@@ -1,20 +1,19 @@
-<h1>Household Budget System</h1>
+<h1>{{ __('messages.welcome_title') }}</h1>
+<p> {{ __('messages.welcome_description') }} </p>
 
-<p> Personal finance management application </p>
-
-<h3>Features</h3>
+<h3>{{ __('messages.features') }}</h3>
 
 <ul>
-    <li>Track income and expenses</li>
-    <li>Manage categories</li>
-    <li>Create budgets</li>
-    <li>Analyze financial data using charts</li>
+    <li>{{ __('messages.feature_1') }}</li>
+    <li>{{ __('messages.feature_2') }}</li>
+    <li>{{ __('messages.feature_3') }}</li>
+    <li>{{ __('messages.feature_4') }}</li>
 </ul>
 
 <br>
 
-<a href="{{ route('login') }}"> Login </a>
+<a href="{{ route('login') }}"> {{ __('messages.login') }} </a>
 
 <br><br>
 
-<a href="{{ route('register') }}"> Register </a>
+<a href="{{ route('register') }}"> {{ __('messages.register') }} </a>

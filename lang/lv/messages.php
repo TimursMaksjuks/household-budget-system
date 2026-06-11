@@ -202,6 +202,20 @@ return [
 
     'user_demoted' => 'Administrators veiksmīgi pārveidots par lietotāju.',
 
+    'welcome_title' => 'Mājsaimniecības budžeta sistēma',
+    
+    'welcome_description' => 'Personīgo finanšu pārvaldības lietotne',
+
+    'features' => 'Funkcijas',
+
+    'feature_1' => 'Sekot ienākumiem un izdevumiem',
+
+    'feature_2' => 'Pārvaldīt kategorijas',
+
+    'feature_3' => 'Veidot budžetus',
+
+    'feature_4' => 'Analizēt finanšu datus ar diagrammām',
+
 
     
 ];

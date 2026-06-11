@@ -201,4 +201,18 @@ return [
     'user_promoted' => 'User promoted to administrator successfully.',
 
     'user_demoted' => 'Administrator changed to regular user successfully.',
+
+    'welcome_title' => 'Household Budget System',
+
+    'welcome_description' => 'Personal finance management application',
+
+    'features' => 'Features',
+
+    'feature_1' => 'Track income and expenses',
+    
+    'feature_2' => 'Manage categories',
+
+    'feature_3' => 'Create budgets',
+
+    'feature_4' => 'Analyze financial data using charts',
 ];
