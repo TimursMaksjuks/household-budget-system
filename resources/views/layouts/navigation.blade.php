@@ -15,6 +15,21 @@
                     <x-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
 {{ __('messages.overview') }}
                     </x-nav-link>
+
+<x-nav-link :href="route('financial-records.index')"
+    :active="request()->routeIs('financial-records.*')">
+    {{ __('messages.financial_records') }}
+</x-nav-link>
+
+<x-nav-link :href="route('categories.index')"
+    :active="request()->routeIs('categories.*')">
+    {{ __('messages.categories') }}
+</x-nav-link>
+
+<x-nav-link  :href="route('budgets.index')"
+    :active="request()->routeIs('budgets.*')">
+    {{ __('messages.budgets') }}
+</x-nav-link>
                 </div>
             </div>
 
@@ -73,7 +88,7 @@
     <div :class="{'block': open, 'hidden': ! open}" class="hidden sm:hidden">
         <div class="pt-2 pb-3 space-y-1">
             <x-responsive-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
-                {{ __('Dashboard') }}
+                {{ __('messages.overview') }}
             </x-responsive-nav-link>
         </div>
 
@@ -86,7 +101,7 @@
 
             <div class="mt-3 space-y-1">
                 <x-responsive-nav-link :href="route('profile.edit')">
-                    {{ __('Profile') }}
+                    {{ __('messages.profile') }}
                 </x-responsive-nav-link>
 
                 <!-- Authentication -->
@@ -96,7 +111,7 @@
                     <x-responsive-nav-link :href="route('logout')"
                             onclick="event.preventDefault();
                                         this.closest('form').submit();">
-                        {{ __('Log Out') }}
+{{ __('messages.logout') }}
                     </x-responsive-nav-link>
                 </form>
             </div>

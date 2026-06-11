@@ -36,12 +36,12 @@ class FinanceController extends Controller
     public function store(Request $request)
 {
     $request->validate([
-        'amount' => 'required|numeric',
-        'date' => 'required|date',
-        'description' => 'required|max:255',
-        'record_type' => 'required',
-        'category_id' => 'required'
-    ]);
+    'amount' => 'required|numeric|min:0.01',
+    'date' => 'required|date|before_or_equal:today',
+    'description' => 'required|string|max:255',
+    'record_type' => 'required|in:income,expense',
+    'category_id' => 'required|exists:categories,id',
+]);
 
     FinancialRecord::create([
         'amount' => $request->amount,
@@ -89,12 +89,12 @@ return redirect()
 }
 
     $request->validate([
-        'amount' => 'required|numeric|min:0.01',
-        'date' => 'required|date',
-        'description' => 'required|max:255',
-        'record_type' => 'required',
-        'category_id' => 'required'
-    ]);
+    'amount' => 'required|numeric|min:0.01',
+    'date' => 'required|date|before_or_equal:today',
+    'description' => 'required|string|max:255',
+    'record_type' => 'required|in:income,expense',
+    'category_id' => 'required|exists:categories,id',
+]);
 
     $financialRecord->update([
         'amount' => $request->amount,
