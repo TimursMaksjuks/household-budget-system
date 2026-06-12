@@ -218,6 +218,8 @@ return [
 
     'back' => 'Atpakaļ',
 
+    'back_to_home' => 'Atpakaļ uz sākumlapu',
+
 
     
 ];

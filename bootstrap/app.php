@@ -18,6 +18,10 @@ return Application::configure(basePath: dirname(__DIR__))
     'locale' => \App\Http\Middleware\LocaleMiddleware::class,
 ]);
 
+    $middleware->web(append: [
+        \App\Http\Middleware\LocaleMiddleware::class,
+    ]);
+
     
 
 })

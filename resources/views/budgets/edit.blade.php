@@ -1,54 +1,132 @@
-<h1>{{ __('messages.edit_budget') }}</h1>
+<x-app-layout>
 
-<form method="POST" action="{{ route('budgets.update', $budget) }}">
+    <x-slot name="header">
+        <h2 class="font-semibold text-xl text-gray-800 leading-tight">
+            {{ __('messages.edit_budget') }}
+        </h2>
+    </x-slot>
 
-@csrf
-@method('PUT')
+    <div class="py-6">
+        <div class="max-w-5xl mx-auto">
 
-<div>
-    <label>{{ __('messages.limit_amount') }}</label>
+            @if($errors->any())
+                <div style="
+                    background-color:#f8d7da;
+                    color:#721c24;
+                    border:1px solid #f5c6cb;
+                    padding:10px;
+                    margin-bottom:15px;
+                ">
+                    @foreach($errors->all() as $error)
+                        <div>{{ $error }}</div>
+                    @endforeach
+                </div>
+            @endif
 
-    <input type="number" step="0.01" name="limit_amount" value="{{ $budget->limit_amount }}" required>
+            <form method="POST"
+                  action="{{ route('budgets.update', $budget) }}"
+                  style="
+                    background-color:white;
+                    padding:20px;
+                    border:1px solid #ccc;
+                  ">
 
-</div>
+                @csrf
+                @method('PUT')
 
-<br>
+                <div style="margin-bottom:15px;">
+                    <label>{{ __('messages.limit_amount') }}</label>
+                    <br><br>
 
-<div>
-    <label>{{ __('messages.period') }}</label>
+                    <input
+                        type="number"
+                        step="0.01"
+                        name="limit_amount"
+                        value="{{ old('limit_amount', $budget->limit_amount) }}"
+                        style="
+                            width:300px;
+                            padding:8px;
+                            border:1px solid #ccc;
+                        "
+                    >
+                </div>
 
-    <input type="text" name="period" value="{{ $budget->period }}" required >
+                <div style="margin-bottom:15px;">
+                    <label>{{ __('messages.period') }}</label>
+                    <br><br>
 
-</div>
+                    <input
+                        type="text"
+                        name="period"
+                        value="{{ old('period', $budget->period) }}"
+                        style="
+                            width:300px;
+                            padding:8px;
+                            border:1px solid #ccc;
+                        "
+                    >
+                </div>
 
-<br>
+                <div style="margin-bottom:15px;">
+                    <label>{{ __('messages.category') }}</label>
+                    <br><br>
 
-<div>
-    <label>{{ __('messages.category') }}</label>
+                    <select
+                        name="category_id"
+                        style="
+                            width:300px;
+                            padding:8px;
+                            border:1px solid #ccc;
+                        "
+                    >
 
-    <select name="category_id" required>
+                        @foreach($categories as $category)
 
-        @foreach($categories as $category)
+                            <option
+                                value="{{ $category->id }}"
+                                {{ $budget->category_id == $category->id ? 'selected' : '' }}>
 
-            <option
-                value="{{ $category->id }}"
-                {{ $budget->category_id == $category->id ? 'selected' : '' }}>
+                                {{ $category->name }}
 
-                {{ $category->name }}
-            </option>
+                            </option>
 
-        @endforeach
+                        @endforeach
 
-    </select>
+                    </select>
 
-</div>
+                </div>
 
-<br>
+                <button type="submit"
+                        style="
+                            background-color:#0d6efd;
+                            color:white;
+                            border:none;
+                            width:150px;
+                            height:50px;
+                            cursor:pointer;
+                            margin-right:10px;
+                        ">
+                    {{ __('messages.update_budget') }}
+                </button>
 
-<button type="submit"> {{ __('messages.update_budget') }} </button>
+                <a href="{{ route('budgets.index') }}"
+                   style="
+                       background-color:#6c757d;
+                       color:white;
+                       text-decoration:none;
+                       display:inline-flex;
+                       align-items:center;
+                       justify-content:center;
+                       width:150px;
+                       height:50px;
+                       box-sizing:border-box;
+                   ">
+                    {{ __('messages.back') }}
+                </a>
 
-</form>
+            </form>
 
-<br>
+        </div>
+    </div>
 
-<a href="{{ route('budgets.index') }}"> {{ __('messages.back_to_budgets') }} </a>
+</x-app-layout>

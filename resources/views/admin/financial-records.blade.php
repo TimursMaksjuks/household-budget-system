@@ -1,69 +1,112 @@
-@if(session('success'))
+<x-app-layout>
 
-    <div style="
-        background:#d4edda;
-        color:#155724;
-        padding:10px;
-        margin-bottom:15px;
-        border:1px solid #c3e6cb;
-    ">
-        {{ session('success') }}
+    <x-slot name="header">
+        <h2 class="font-semibold text-xl text-gray-800 leading-tight">
+            {{ __('messages.all_financial_records') }}
+        </h2>
+    </x-slot>
+
+    <div class="py-6">
+        <div class="max-w-7xl mx-auto">
+
+            <div style="margin-bottom:20px;">
+
+                <a href="{{ route('admin.index') }}"
+                   style="
+                       background-color:#6c757d;
+                       color:white;
+                       padding:10px 15px;
+                       text-decoration:none;
+                   ">
+                    {{ __('messages.back') }}
+                </a>
+
+            </div>
+
+            <table style="
+                width:100%;
+                border-collapse:collapse;
+                background-color:white;
+            ">
+
+                <thead>
+
+                    <tr style="background-color:#f2f2f2;">
+
+                        <th style="border:1px solid #ccc;padding:10px;">
+                            {{ __('messages.user') }}
+                        </th>
+
+                        <th style="border:1px solid #ccc;padding:10px;">
+                            {{ __('messages.date') }}
+                        </th>
+
+                        <th style="border:1px solid #ccc;padding:10px;">
+                            {{ __('messages.type') }}
+                        </th>
+
+                        <th style="border:1px solid #ccc;padding:10px;">
+                            {{ __('messages.category') }}
+                        </th>
+
+                        <th style="border:1px solid #ccc;padding:10px;">
+                            {{ __('messages.description') }}
+                        </th>
+
+                        <th style="border:1px solid #ccc;padding:10px;">
+                            {{ __('messages.amount') }}
+                        </th>
+
+                    </tr>
+
+                </thead>
+
+                <tbody>
+
+                    @foreach($records as $record)
+
+                        <tr>
+
+                            <td style="border:1px solid #ccc;padding:10px;">
+                                {{ $record->user->name }}
+                                {{ $record->user->surname }}
+                            </td>
+
+                            <td style="border:1px solid #ccc;padding:10px;">
+                                {{ $record->date }}
+                            </td>
+
+                            <td style="border:1px solid #ccc;padding:10px;">
+
+                                @if($record->record_type === 'income')
+                                    {{ __('messages.income') }}
+                                @else
+                                    {{ __('messages.expense') }}
+                                @endif
+
+                            </td>
+
+                            <td style="border:1px solid #ccc;padding:10px;">
+                                {{ $record->category->name }}
+                            </td>
+
+                            <td style="border:1px solid #ccc;padding:10px;">
+                                {{ $record->description }}
+                            </td>
+
+                            <td style="border:1px solid #ccc;padding:10px;">
+                                {{ $record->amount }} €
+                            </td>
+
+                        </tr>
+
+                    @endforeach
+
+                </tbody>
+
+            </table>
+
+        </div>
     </div>
 
-@endif
-
-
-
-<h1>{{ __('messages.all_financial_records') }}</h1>
-
-<br>
-
-<table border="1">
-
-    <tr>
-        <th>{{ __('messages.user') }}</th>
-        <th>{{ __('messages.date') }}</th>
-        <th>{{ __('messages.type') }}</th>
-        <th>{{ __('messages.category') }}</th>
-        <th>{{ __('messages.description') }}</th>
-        <th>{{ __('messages.amount') }}</th>
-    </tr>
-
-    @foreach($records as $record)
-
-        <tr>
-
-            <td>
-                {{ $record->user->name }}
-                {{ $record->user->surname }}
-            </td>
-
-            <td>
-                {{ $record->date }}
-            </td>
-
-            <td>
-    @if($record->record_type === 'income')
-        {{ __('messages.income') }}
-    @else
-        {{ __('messages.expense') }}
-    @endif
-            </td>
-
-            <td>
-                {{ $record->category->name }}
-            </td>
-
-            <td>
-                {{ $record->description }}
-            </td>
-
-            <td>
-                {{ $record->amount }}
-            </td>
-
-        </tr>
-
-    @endforeach
-
-</table>
+</x-app-layout>

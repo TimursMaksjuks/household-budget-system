@@ -1,7 +1,9 @@
 <x-app-layout>
 
     <x-slot name="header">
-        <h2 class="font-semibold text-xl text-gray-800 leading-tight"> {{ __('messages.expenses_by_category') }} </h2>
+        <h2 class="font-semibold text-xl text-gray-800 leading-tight">
+            {{ __('messages.expenses_by_category') }}
+        </h2>
     </x-slot>
 
     @php
@@ -26,13 +28,42 @@
 
                 <div class="p-6 text-gray-900">
 
-                    <h3>  {{ __('messages.expenses_by_category') }} </h3> 
+                    <h3>{{ __('messages.expenses_by_category') }}</h3>
 
                     <br>
 
-                    <div style="width: 450px; height: 450px; margin: auto;">
-                    <canvas id="expenseChart"></canvas>
-                   </div>
+                    <div style="margin-bottom:20px;">
+
+                        <a href="{{ url('/diagrams/monthly-income-expenses') }}"
+                           style="
+                               background-color:#198754;
+                               color:white;
+                               padding:10px 15px;
+                               text-decoration:none;
+                               margin-right:10px;
+                           ">
+                            {{ __('messages.monthly_income_expenses') }}
+                        </a>
+
+                        <a href="{{ route('dashboard') }}"
+                           style="
+                               background-color:#6c757d;
+                               color:white;
+                               padding:10px 15px;
+                               text-decoration:none;
+                           ">
+                            {{ __('messages.back') }}
+                        </a>
+
+                    </div>
+
+                    <div style="
+                        width:350px;
+                        height:350px;
+                        margin:auto;
+                    ">
+                        <canvas id="expenseChart"></canvas>
+                    </div>
 
                 </div>
 

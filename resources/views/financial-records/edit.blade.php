@@ -1,72 +1,167 @@
-<h1>{{ __('messages.edit_finance_record') }}</h1>   
+<x-app-layout>
 
-<form method="POST" action="{{ route('financial-records.update', $financialRecord) }}">
+    <x-slot name="header">
+        <h2 class="font-semibold text-xl text-gray-800 leading-tight">
+            {{ __('messages.edit_finance_record') }}
+        </h2>
+    </x-slot>
 
-    @csrf
-    @method('PUT')
+    <div class="py-6">
+        <div class="max-w-5xl mx-auto">
 
-<div>
-    <label>{{ __('messages.amount') }}</label>
-    <input type="number" step="0.01" name="amount" value="{{ $financialRecord->amount }}" required >
+            @if($errors->any())
+                <div style="
+                    background-color:#f8d7da;
+                    color:#721c24;
+                    border:1px solid #f5c6cb;
+                    padding:10px;
+                    margin-bottom:15px;
+                ">
+                    @foreach($errors->all() as $error)
+                        <div>{{ $error }}</div>
+                    @endforeach
+                </div>
+            @endif
 
-</div>
+            <form method="POST"
+                  action="{{ route('financial-records.update', $financialRecord) }}"
+                  style="
+                    background-color:white;
+                    padding:20px;
+                    border:1px solid #ccc;
+                  ">
 
-<br>
+                @csrf
+                @method('PUT')
 
-<div>
-    <label>{{ __('messages.date') }}</label>
-    <input type="date" name="date" value="{{ $financialRecord->date }}" required >
-</div>
+                <div style="margin-bottom:15px;">
+                    <label>{{ __('messages.amount') }}</label>
+                    <br><br>
 
-<br>
+                    <input
+                        type="number"
+                        step="0.01"
+                        name="amount"
+                        value="{{ old('amount', $financialRecord->amount) }}"
+                        style="
+                            width:300px;
+                            padding:8px;
+                            border:1px solid #ccc;
+                        "
+                    >
+                </div>
 
-<div>
-    <label>{{ __('messages.description') }}</label>
-    <input type="text" name="description" value="{{ $financialRecord->description }}" required >
-</div>
+                <div style="margin-bottom:15px;">
+                    <label>{{ __('messages.date') }}</label>
+                    <br><br>
 
-<br>
+                    <input
+                        type="date"
+                        name="date"
+                        value="{{ old('date', $financialRecord->date) }}"
+                        max="{{ date('Y-m-d') }}"
+                        style="
+                            width:300px;
+                            padding:8px;
+                            border:1px solid #ccc;
+                        "
+                    >
+                </div>
 
-<div>
-    <label>{{ __('messages.type') }}</label>
+                <div style="margin-bottom:15px;">
+                    <label>{{ __('messages.description') }}</label>
+                    <br><br>
 
-    <select name="record_type" required>
-        <option value="income"
-            {{ $financialRecord->record_type == 'income' ? 'selected' : '' }}>
-            {{ __('messages.income') }}
-        </option>
+                    <textarea
+                        name="description"
+                        rows="4"
+                        style="
+                            width:300px;
+                            padding:8px;
+                            border:1px solid #ccc;
+                        "
+                    >{{ old('description', $financialRecord->description) }}</textarea>
+                </div>
 
-        <option value="expense"
-            {{ $financialRecord->record_type == 'expense' ? 'selected' : '' }}>
-            {{ __('messages.expense') }}
-        </option>
-    </select>
-</div>
+                <div style="margin-bottom:15px;">
+                    <label>{{ __('messages.type') }}</label>
+                    <br><br>
 
-<br>
+                    <select
+                        name="record_type"
+                        style="
+                            width:300px;
+                            padding:8px;
+                            border:1px solid #ccc;
+                        "
+                    >
+                        <option value="income"
+                            {{ $financialRecord->record_type == 'income' ? 'selected' : '' }}>
+                            {{ __('messages.income') }}
+                        </option>
 
-<div>
-    <label>{{ __('messages.category') }}</label>
+                        <option value="expense"
+                            {{ $financialRecord->record_type == 'expense' ? 'selected' : '' }}>
+                            {{ __('messages.expense') }}
+                        </option>
+                    </select>
+                </div>
 
-    <select name="category_id" required>
-        @foreach($categories as $category)
+                <div style="margin-bottom:15px;">
+                    <label>{{ __('messages.category') }}</label>
+                    <br><br>
 
-            <option
-                value="{{ $category->id }}"
-                {{ $financialRecord->category_id == $category->id ? 'selected' : '' }}>
-                {{ $category->name }}
-            </option>
+                    <select
+                        name="category_id"
+                        style="
+                            width:300px;
+                            padding:8px;
+                            border:1px solid #ccc;
+                        "
+                    >
+                        @foreach($categories as $category)
 
-        @endforeach
-    </select>
-</div>
+                            <option
+                                value="{{ $category->id }}"
+                                {{ $financialRecord->category_id == $category->id ? 'selected' : '' }}>
+                                {{ $category->name }}
+                            </option>
 
-<br>
+                        @endforeach
+                    </select>
+                </div>
 
-<button type="submit"> {{ __('messages.update_record') }} </button>
+                <button type="submit"
+        style="
+            background-color:#0d6efd;
+            color:white;
+            border:none;
+            width:150px;
+            height:50px;
+            cursor:pointer;
+            margin-right:10px;
+        ">
+    {{ __('messages.update_record') }}
+</button>
 
-</form>
+                <a href="{{ route('financial-records.index') }}"
+   style="
+       background-color:#6c757d;
+       color:white;
+       text-decoration:none;
+       display:inline-flex;
+       align-items:center;
+       justify-content:center;
+       width:150px;
+       height:50px;
+       box-sizing:border-box;
+   ">
+    {{ __('messages.back') }}
+</a>
 
-<br>
+            </form>
 
-<a href="{{ route('financial-records.index') }}"> {{ __('messages.back_to_records') }} </a>
+        </div>
+    </div>
+
+</x-app-layout>

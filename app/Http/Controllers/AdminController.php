@@ -30,7 +30,7 @@ public function unblock(User $user)
 {
     $user->update(['is_blocked' => false]);
 
-    return redirect()->route('admin.index')->with('success', __('messages.user_blocked'));
+    return redirect()->route('admin.index')->with('success', __('messages.user_unblocked'));
 }
 
 public function makeAdmin(User $user)

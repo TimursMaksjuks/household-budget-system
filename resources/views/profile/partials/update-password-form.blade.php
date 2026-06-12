@@ -32,7 +32,17 @@
         </div>
 
         <div class="flex items-center gap-4">
-            <x-primary-button>{{ __('messages.save') }}</x-primary-button>
+            <button type="submit"
+        style="
+            background-color:#0d6efd;
+            color:white;
+            border:none;
+            padding:10px 20px;
+            cursor:pointer;
+            width:130px;
+        ">
+    {{ __('messages.save') }}
+</button>
 
             @if (session('status') === 'password-updated')
                 <p

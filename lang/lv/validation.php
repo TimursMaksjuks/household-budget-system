@@ -25,7 +25,7 @@ return [
     'array' => 'The :attribute field must be an array.',
     'ascii' => 'The :attribute field must only contain single-byte alphanumeric characters and symbols.',
     'before' => 'The :attribute field must be a date before :date.',
-    'before_or_equal' => 'The :attribute field must be a date before or equal to :date.',
+    'before_or_equal' => 'Lauks :attribute nedrīkst būt vēlāks par šodienu.',
     'between' => [
         'array' => 'The :attribute field must have between :min and :max items.',
         'file' => 'The :attribute field must be between :min and :max kilobytes.',
@@ -108,7 +108,7 @@ return [
     'min' => [
         'array' => 'The :attribute field must have at least :min items.',
         'file' => 'The :attribute field must be at least :min kilobytes.',
-        'numeric' => 'The :attribute field must be at least :min.',
+        'numeric' => 'Lauks :attribute nedrīkst būt mazāks par :min.',
         'string' => 'Laukam :attribute jābūt vismaz :min rakstzīmēm.',
     ],
     'min_digits' => 'The :attribute field must have at least :min digits.',
@@ -197,7 +197,7 @@ return [
 
     'attributes' => [
 
-    'name' => 'vārds',
+    'name' => 'nosaukums',
 
     'surname' => 'uzvārds',
 

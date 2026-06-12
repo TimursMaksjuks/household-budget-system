@@ -217,4 +217,6 @@ return [
     'feature_4' => 'Analyze financial data using charts',
 
     'back' => 'Back',
+
+    'back_to_home' => 'Back to Home',
 ];

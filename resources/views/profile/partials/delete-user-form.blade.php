@@ -46,9 +46,18 @@
 {{ __('messages.cancel') }} 
                </x-secondary-button>
 
-                <x-danger-button class="ms-3">
-{{ __('messages.delete_account') }}
-                </x-danger-button>
+                <button
+    type="button"
+    style="
+        background-color:#dc3545;
+        color:white;
+        border:none;
+        padding:10px 20px;
+        cursor:pointer;
+        border-radius:0;
+    ">
+    {{ __('messages.delete_account') }}
+</button>
             </div>
         </form>
     </x-modal>
