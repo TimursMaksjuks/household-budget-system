@@ -57,6 +57,16 @@
                         </th>
 
                         <th style="border:1px solid #ccc; padding:10px;">
+                            {{ __('messages.spent') }}
+
+                        </th>
+
+                        <th style="border:1px solid #ccc; padding:10px;">
+                            {{ __('messages.remainder') }}
+
+                        </th>
+
+                        <th style="border:1px solid #ccc; padding:10px;">
                             {{ __('messages.actions') }}
                         </th>
 
@@ -79,7 +89,15 @@
                             </td>
 
                             <td style="border:1px solid #ccc; padding:10px;">
-                                {{ $budget->limit_amount }}
+                                {{ number_format($budget->limit_amount, 2) }}
+                            </td>
+
+                            <td style="border:1px solid #ccc; padding:10px;">
+                                {{ number_format($budget->spent, 2) }}
+                            </td>
+
+                            <td style="border:1px solid #ccc; padding:10px;">
+                                {{ number_format($budget->remaining, 2) }}
                             </td>
 
                             <td style="border:1px solid #ccc; padding:10px;">

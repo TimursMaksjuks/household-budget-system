@@ -7,7 +7,7 @@
     </x-slot>
 
     <div class="py-6">
-        <div class="max-w-6xl mx-auto">
+        <div class="max-w-5xl mx-auto">
 
             <div style="margin-bottom:20px;">
 

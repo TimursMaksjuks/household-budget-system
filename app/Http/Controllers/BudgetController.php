@@ -6,6 +6,8 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 use App\Models\Budget;
 use App\Models\Category;
+use App\Models\FinancialRecord;
+use Carbon\Carbon;
 
 
 class BudgetController extends Controller
@@ -13,9 +15,27 @@ class BudgetController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+   public function index()
 {
-    $budgets = Budget::where('user_id', Auth::id())->get();
+    $budgets = Budget::where('user_id', Auth::id())
+        ->with('category')
+        ->get();
+
+    foreach ($budgets as $budget) {
+
+        $periodDate = Carbon::createFromFormat('F Y', $budget->period);
+
+        $spent = FinancialRecord::where('user_id', Auth::id())
+            ->where('record_type', 'expense')
+            ->where('category_id', $budget->category_id)
+            ->whereYear('date', $periodDate->year)
+            ->whereMonth('date', $periodDate->month)
+            ->sum('amount');
+
+        $budget->spent = $spent;
+
+        $budget->remaining = $budget->limit_amount - $spent;
+    }
 
     return view('budgets.index', compact('budgets'));
 }

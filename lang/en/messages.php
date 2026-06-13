@@ -219,4 +219,8 @@ return [
     'back' => 'Back',
 
     'back_to_home' => 'Back to Home',
+
+    'remainder' => 'Remainder',
+
+    'spent' => 'Spent',
 ];

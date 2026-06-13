@@ -220,6 +220,10 @@ return [
 
     'back_to_home' => 'Atpakaļ uz sākumlapu',
 
+    'spent' => 'Patērēts',
+
+    'remainder' => 'Atlikums',
+
 
     
 ];
