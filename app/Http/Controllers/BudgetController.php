@@ -23,8 +23,8 @@ class BudgetController extends Controller
 
     foreach ($budgets as $budget) {
 
-        $periodDate = Carbon::createFromFormat('F Y', $budget->period);
-
+        $periodDate = Carbon::createFromFormat('Y-m', $budget->period);
+        
         $spent = FinancialRecord::where('user_id', Auth::id())
             ->where('record_type', 'expense')
             ->where('category_id', $budget->category_id)
@@ -45,7 +45,7 @@ class BudgetController extends Controller
      */
     public function create()
 {
-    $categories = Category::all();
+    $categories = Category::where('user_id', Auth::id())->get();
 
     return view('budgets.create', compact('categories'));
 }
@@ -88,7 +88,7 @@ class BudgetController extends Controller
         abort(403);
     }
 
-    $categories = Category::all();
+    $categories = Category::where('user_id', Auth::id())->get();
 
     return view('budgets.edit', compact('budget', 'categories'));
 }

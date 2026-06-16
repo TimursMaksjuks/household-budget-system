@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Support\Facades\Auth;
 use App\Models\FinancialRecord;
 use App\Models\Budget;
+use Carbon\Carbon;
 
 class DiagramController extends Controller
 {
@@ -43,8 +44,8 @@ public function expensesByCategory(){
     
 }
 
-public function monthlyIncomeExpenses(){
-
+public function monthlyIncomeExpenses()
+{
     $incomeData = FinancialRecord::where('user_id', Auth::id())
         ->where('record_type', 'income')
         ->selectRaw("DATE_FORMAT(date, '%Y-%m') as month, SUM(amount) as total")
@@ -65,6 +66,22 @@ public function monthlyIncomeExpenses(){
             ->values()
     );
 
+    $formattedMonths = [];
+
+    foreach ($months as $month) {
+
+        $date = Carbon::createFromFormat('Y-m', $month);
+
+        $date->locale(
+            app()->getLocale() === 'lv'
+                ? 'lv'
+                : 'en'
+        );
+
+        $formattedMonths[] =
+            ucfirst($date->translatedFormat('F Y'));
+    }
+
     $incomeValues = [];
     $expenseValues = [];
 
@@ -81,11 +98,11 @@ public function monthlyIncomeExpenses(){
 
     return view(
         'diagrams.monthly-income-expenses',
-        compact(
-            'months',
-            'incomeValues',
-            'expenseValues'
-        )
+        [
+            'months' => $formattedMonths,
+            'incomeValues' => $incomeValues,
+            'expenseValues' => $expenseValues,
+        ]
     );
 }
 

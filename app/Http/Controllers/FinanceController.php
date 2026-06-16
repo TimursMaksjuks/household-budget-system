@@ -25,7 +25,7 @@ class FinanceController extends Controller
      */
     public function create()
 {
-    $categories = Category::all();
+    $categories = Category::where('user_id', Auth::id())->get();
 
     return view('financial-records.create', compact('categories'));
 }
@@ -74,7 +74,7 @@ return redirect()
     if ($financialRecord->user_id !== Auth::id()) {
     abort(403);
 }
-    $categories = Category::all();
+    $categories = Category::where('user_id', Auth::id())->get();
 
     return view('financial-records.edit', compact('financialRecord', 'categories'));
 }

@@ -51,22 +51,102 @@
                 </div>
 
                 <div style="margin-bottom:15px;">
-                    <label>{{ __('messages.period') }}</label>
-                    <br><br>
 
-                    <input
-                        type="text"
-                        name="period"
-                        value="{{ old('period') }}"
-                        placeholder="June 2026"
-                        style="
-                            width:300px;
-                            padding:8px;
-                            border:1px solid #ccc;
-                        "
-                    >
-                </div>
+    <label>{{ __('messages.period') }}</label>
 
+    <br><br>
+
+    <select
+        id="month"
+        style="
+            width:145px;
+            padding:8px;
+            border:1px solid #ccc;
+            margin-right:10px;
+        "
+    >
+
+        @if(app()->getLocale() === 'lv')
+
+            <option value="01">Janvāris</option>
+            <option value="02">Februāris</option>
+            <option value="03">Marts</option>
+            <option value="04">Aprīlis</option>
+            <option value="05">Maijs</option>
+            <option value="06">Jūnijs</option>
+            <option value="07">Jūlijs</option>
+            <option value="08">Augusts</option>
+            <option value="09">Septembris</option>
+            <option value="10">Oktobris</option>
+            <option value="11">Novembris</option>
+            <option value="12">Decembris</option>
+
+        @else
+
+            <option value="01">January</option>
+            <option value="02">February</option>
+            <option value="03">March</option>
+            <option value="04">April</option>
+            <option value="05">May</option>
+            <option value="06">June</option>
+            <option value="07">July</option>
+            <option value="08">August</option>
+            <option value="09">September</option>
+            <option value="10">October</option>
+            <option value="11">November</option>
+            <option value="12">December</option>
+
+        @endif
+
+    </select>
+
+    <select
+        id="year"
+        style="
+            width:145px;
+            padding:8px;
+            border:1px solid #ccc;
+        "
+    >
+
+        @for($year = date('Y') - 5; $year <= date('Y') + 10; $year++)
+
+            <option value="{{ $year }}">
+                {{ $year }}
+            </option>
+
+        @endfor
+
+    </select>
+
+    <input
+        type="hidden"
+        name="period"
+        id="period"
+    >
+
+</div>
+
+<script>
+
+    function updatePeriod() {
+
+        let month = document.getElementById('month').value;
+        let year = document.getElementById('year').value;
+
+        document.getElementById('period').value =
+            year + '-' + month;
+    }
+
+    document.getElementById('month')
+        .addEventListener('change', updatePeriod);
+
+    document.getElementById('year')
+        .addEventListener('change', updatePeriod);
+
+    updatePeriod();
+
+</script>
                 <div style="margin-bottom:15px;">
                     <label>{{ __('messages.category') }}</label>
                     <br><br>

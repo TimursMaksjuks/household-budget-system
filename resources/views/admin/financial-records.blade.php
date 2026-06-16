@@ -73,7 +73,7 @@
                             </td>
 
                             <td style="border:1px solid #ccc;padding:10px;">
-                                {{ $record->date }}
+                                {{ \Carbon\Carbon::parse($record->date)->format('d/m/Y') }}
                             </td>
 
                             <td style="border:1px solid #ccc;padding:10px;">

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Validation\Rule;
 use App\Models\Category;
 
 class CategoryController extends Controller
@@ -30,16 +31,27 @@ class CategoryController extends Controller
      * Store a newly created resource in storage.
      */
     public function store(Request $request)
-    {
-        $request->validate(['name' => 'required|string|max:255']);
-        
-        Category::create([
-    'name' => $request->name,
-    'user_id' => Auth::id(),
-]);
-        return redirect()->route('categories.index')->with('success', __('messages.category_created'));
+{
+    $request->validate([
+        'name' => [
+            'required',
+            'string',
+            'max:255',
+            Rule::unique('categories')->where(function ($query) {
+                return $query->where('user_id', Auth::id());
+            }),
+        ],
+    ]);
 
-    }
+    Category::create([
+        'name' => $request->name,
+        'user_id' => Auth::id(),
+    ]);
+
+    return redirect()
+        ->route('categories.index')
+        ->with('success', __('messages.category_created'));
+}
 
     /**
      * Display the specified resource.

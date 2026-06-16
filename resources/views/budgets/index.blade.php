@@ -58,12 +58,10 @@
 
                         <th style="border:1px solid #ccc; padding:10px;">
                             {{ __('messages.spent') }}
-
                         </th>
 
                         <th style="border:1px solid #ccc; padding:10px;">
                             {{ __('messages.remainder') }}
-
                         </th>
 
                         <th style="border:1px solid #ccc; padding:10px;">
@@ -81,7 +79,19 @@
                         <tr>
 
                             <td style="border:1px solid #ccc; padding:10px;">
-                                {{ $budget->period }}
+
+                                @php
+                                    $date = \Carbon\Carbon::createFromFormat('Y-m', $budget->period);
+
+                                    $date->locale(
+                                        app()->getLocale() === 'lv'
+                                            ? 'lv'
+                                            : 'en'
+                                    );
+                                @endphp
+
+                                {{ ucfirst($date->translatedFormat('F Y')) }}
+
                             </td>
 
                             <td style="border:1px solid #ccc; padding:10px;">

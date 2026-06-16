@@ -182,6 +182,9 @@ return [
         'attribute-name' => [
             'rule-name' => 'custom-message',
         ],
+        'name' => [
+        'unique' => 'Šāda kategorija jau eksistē.',
+    ],
     ],
 
     /*
