@@ -31,9 +31,21 @@
         </div>
 
         <div class="flex items-center justify-end mt-4">
-            <x-primary-button>
-{{ __('messages.reset_password') }}
-            </x-primary-button>
-        </div>
+
+    <button
+        type="submit"
+        style="
+            background-color:#0d6efd;
+            color:white;
+            border:none;
+            padding:10px 20px;
+            cursor:pointer;
+            font-weight:bold;
+        "
+    >
+        {{ __('messages.reset_password') }}
+    </button>
+
+</div>
     </form>
 </x-guest-layout>
