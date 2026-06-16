@@ -1,64 +1,54 @@
 <section class="space-y-6">
+
     <header>
         <h2 class="text-lg font-medium text-gray-900">
-{{ __('messages.delete_account') }}
+            {{ __('messages.delete_account') }}
         </h2>
 
         <p class="mt-1 text-sm text-gray-600">
-{{ __('messages.delete_account_description') }}
+            {{ __('messages.delete_account_description') }}
         </p>
     </header>
 
-    <x-danger-button
-        x-data=""
-        x-on:click.prevent="$dispatch('open-modal', 'confirm-user-deletion')"
-    >{{ __('messages.delete_account') }}</x-danger-button>
+    <form method="POST" action="{{ route('profile.destroy') }}">
 
-    <x-modal name="confirm-user-deletion" :show="$errors->userDeletion->isNotEmpty()" focusable>
-        <form method="post" action="{{ route('profile.destroy') }}" class="p-6">
-            @csrf
-            @method('delete')
+        @csrf
+        @method('DELETE')
 
-            <h2 class="text-lg font-medium text-gray-900">
-                {{ __('messages.delete_account_confirmation') }}
-            </h2>
+        <div style="margin-top:20px;">
+            <label>
+                {{ __('messages.password') }}
+            </label>
 
-            <p class="mt-1 text-sm text-gray-600">
-{{ __('messages.delete_account_warning') }}
-            </p>
+            <br><br>
 
-            <div class="mt-6">
-                <x-input-label for="password" value="{{ __('messages.password') }}" class="sr-only" />
+            <input
+                type="password"
+                name="password"
+                required
+                style="
+                    border:1px solid #ccc;
+                    padding:10px;
+                    width:300px;
+                "
+            >
+        </div>
 
-                <x-text-input
-                    id="password"
-                    name="password"
-                    type="password"
-                    class="mt-1 block w-3/4"
-                    placeholder="{{ __('Password') }}"
-                />
+        <br>
 
-                <x-input-error :messages="$errors->userDeletion->get('password')" class="mt-2" />
-            </div>
+        <button
+            type="submit"
+            style="
+                background-color:#dc3545;
+                color:white;
+                border:none;
+                padding:10px 20px;
+                cursor:pointer;
+            "
+        >
+            {{ __('messages.delete_account') }}
+        </button>
 
-            <div class="mt-6 flex justify-end">
-                <x-secondary-button x-on:click="$dispatch('close')">
-{{ __('messages.cancel') }} 
-               </x-secondary-button>
+    </form>
 
-                <button
-    type="button"
-    style="
-        background-color:#dc3545;
-        color:white;
-        border:none;
-        padding:10px 20px;
-        cursor:pointer;
-        border-radius:0;
-    ">
-    {{ __('messages.delete_account') }}
-</button>
-            </div>
-        </form>
-    </x-modal>
 </section>
