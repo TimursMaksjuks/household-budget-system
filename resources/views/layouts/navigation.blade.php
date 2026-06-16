@@ -89,7 +89,10 @@
     <a href="{{ route('language.switch', 'lv') }}">LV</a>
 
     <a href="{{ route('language.switch', 'en') }}">EN</a>
-{{ Auth::user()->name }}</div>
+{{ Auth::user()->name }}
+({{ Auth::user()->role === 'admin'
+    ? __('messages.admin')
+    : __('messages.user') }})</div>
 
                             <div class="ms-1">
                                 <svg class="fill-current h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">

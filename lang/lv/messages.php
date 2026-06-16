@@ -224,6 +224,8 @@ return [
 
     'remainder' => 'Atlikums',
 
+    'admin' => 'Administrators',
+
 
     
 ];

@@ -223,4 +223,6 @@ return [
     'remainder' => 'Remainder',
 
     'spent' => 'Spent',
+
+    'admin' => 'Administrator',
 ];
